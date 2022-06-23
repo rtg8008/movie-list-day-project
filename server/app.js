@@ -3,6 +3,10 @@ const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV||'dev
 const app = express();
 app.use(express.json());
 
+
+app.get('/', (req, res) => res.status(200).send('Hello World!'))
+
+
 app.get("/movies", async (req, res) => {
   let result = await knex('movies')
     .select("*");
