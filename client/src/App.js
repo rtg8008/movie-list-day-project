@@ -12,14 +12,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Card from '@mui/material/Card';
 import { display } from '@mui/system';
-
+const apiURL = `https://movie-list-node-api.herokuapp.com/`
 
 function App() {
   const [movies, setMovies] = React.useState([{title: '', isWatched: false}])
   const [displayMovies, setDisplayMovies] = React.useState([{title: '', isWatched: false}])
   const [displayWatchedMovies, setDisplayWatchedMovies] = React.useState(false);
   React.useEffect(()=>{
-    fetch(`http://localhost:8080/movies`)
+    fetch(`${apiURL}movies`)
     .then(res => res.json())
     .then(data => {
       setMovies(data);
@@ -53,7 +53,7 @@ function App() {
         'Content-Type': 'application/json;charset=utf-8'
       },
     }
-    fetch(`http://localhost:8080/movies/${id}`, init)
+    fetch(`${apiURL}/movies/${id}`, init)
     .then(res => res.json())
     .then(data =>{
       // console.log(data)
@@ -83,7 +83,7 @@ function App() {
         isWatched: toSend
       })
     }
-    fetch(`http://localhost:8080/movies/${element.id}`, init)
+    fetch(`${apiURL}/movies/${element.id}`, init)
     .then(res => res.json())
     .then(data =>{
       // console.log(data)
@@ -173,7 +173,7 @@ const AddMovieDialog = ({movies, setMovies, displayMovies, setDisplayMovies}) =>
       })
     }
     setOpen(false);
-    fetch(`http://localhost:8080/movies`, init)
+    fetch(`${apiURL}/movies`, init)
     .then(res => res.json())
     .then(data =>{
       // console.log(data)
