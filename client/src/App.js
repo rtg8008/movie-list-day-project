@@ -53,7 +53,7 @@ function App() {
         'Content-Type': 'application/json;charset=utf-8'
       },
     }
-    fetch(`${apiURL}/movies/${id}`, init)
+    fetch(`${apiURL}movies/${id}`, init)
     .then(res => res.json())
     .then(data =>{
       // console.log(data)
@@ -83,7 +83,7 @@ function App() {
         isWatched: toSend
       })
     }
-    fetch(`${apiURL}/movies/${element.id}`, init)
+    fetch(`${apiURL}movies/${element.id}`, init)
     .then(res => res.json())
     .then(data =>{
       // console.log(data)
@@ -173,7 +173,7 @@ const AddMovieDialog = ({movies, setMovies, displayMovies, setDisplayMovies}) =>
       })
     }
     setOpen(false);
-    fetch(`${apiURL}/movies`, init)
+    fetch(`${apiURL}movies`, init)
     .then(res => res.json())
     .then(data =>{
       // console.log(data)
