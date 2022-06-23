@@ -164,6 +164,7 @@ const AddMovieDialog = ({movies, setMovies, displayMovies, setDisplayMovies}) =>
 
     const init = {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
