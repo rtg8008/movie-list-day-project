@@ -164,14 +164,15 @@ const AddMovieDialog = ({movies, setMovies, displayMovies, setDisplayMovies}) =>
 
     const init = {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+        'Content-Type': 'application/json;charset=utf-8',
+        mode: 'no-cors',
+
       },
-      body: {
+      body: JSON.stringify({
         title: document.getElementById('movie-title').value,
         isWatched: false
-      }
+      })
     }
     setOpen(false);
     fetch(`${apiURL}movies`, init)
