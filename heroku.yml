@@ -7,7 +7,6 @@ setup:
 build:
   docker:
     web: client/Dockerfile
-    worker: server/Dockerfile
   config:
     RAILS_ENV: development
     FOO: bar
