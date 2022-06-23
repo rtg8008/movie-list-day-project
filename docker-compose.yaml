@@ -18,7 +18,7 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - db
+      - DATABASE
     environment:
       DB_CONNECTION_STRING: postgres://postgres:docker@db:5432/db
     networks:
