@@ -167,10 +167,10 @@ const AddMovieDialog = ({movies, setMovies, displayMovies, setDisplayMovies}) =>
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
-      body: JSON.stringify({
+      body: {
         title: document.getElementById('movie-title').value,
         isWatched: false
-      })
+      }
     }
     setOpen(false);
     fetch(`${apiURL}movies`, init)
