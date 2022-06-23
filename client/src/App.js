@@ -1,15 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react'
 
 function App() {
-  const movies = [
-    {title: 'Mean Girls'},
-    {title: 'Hackers'},
-    {title: 'The Grey'},
-    {title: 'Sunshine'},
-    {title: 'Ex Machina'},
-  ]; 
-
+  const [movies, setMovies] = React.useState([{title: ''}])
+  React.useEffect(()=>{
+    fetch(`http://localhost:8080/movies`)
+    .then(res => res.json())
+    .then(data => setMovies(data))
+    .catch(err => {
+      console.log('err')
+      setMovies([{title: 'movie data not available'}])
+    })
+  },[])
 
   return (
     <div className="App">
