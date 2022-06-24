@@ -15,8 +15,8 @@ import { display } from '@mui/system';
 const apiURL = `https://movie-list-node-api.herokuapp.com/`
 
 function App() {
-  const [movies, setMovies] = React.useState([{title: '', isWatched: false}])
-  const [displayMovies, setDisplayMovies] = React.useState([{title: '', isWatched: false}])
+  const [movies, setMovies] = React.useState([{title: '', iswatched: false}])
+  const [displayMovies, setDisplayMovies] = React.useState([{title: '', iswatched: false}])
   const [displayWatchedMovies, setDisplayWatchedMovies] = React.useState(false);
   React.useEffect(()=>{
     fetch(`${apiURL}movies`)
@@ -24,7 +24,7 @@ function App() {
     .then(data => {
       setMovies(data);
       setDisplayMovies(data.filter(el => {
-        return el.isWatched === displayWatchedMovies
+        return el.iswatched === displayWatchedMovies
       }));
       console.log(data)
     })
@@ -38,7 +38,7 @@ function App() {
     // console.log(`searched for movies`)
     let temp = movies.concat([])
     temp = temp.filter((element) => {
-      return element.isWatched === displayWatchedMovies && element.title.toUpperCase().includes(document.getElementById('search-textfield').value.toUpperCase())
+      return element.iswatched === displayWatchedMovies && element.title.toUpperCase().includes(document.getElementById('search-textfield').value.toUpperCase())
     })
     // console.log(temp)
     setDisplayMovies(temp);
@@ -67,7 +67,7 @@ function App() {
     console.log(element.id)
     let toSend = false;
     console.log('movie to toggle',element)
-    if (element.isWatched){
+    if (element.iswatched){
       toSend = false;
     }
     else{
@@ -80,7 +80,7 @@ function App() {
         'Content-Type': 'application/json;charset=utf-8'
       },
       body: JSON.stringify({
-        isWatched: toSend
+        iswatched: toSend
       })
     }
     fetch(`${apiURL}movies/${element.id}`, init)
@@ -92,7 +92,7 @@ function App() {
         let result = false
         for (let i = 0; i < displayMovies.length; i++)
         {
-          if (displayMovies[i].id === el.id && displayMovies[i].isWatched === displayWatchedMovies && el.id !== element.id)
+          if (displayMovies[i].id === el.id && displayMovies[i].iswatched === displayWatchedMovies && el.id !== element.id)
             result = true;
         }
         return result;
@@ -106,7 +106,7 @@ function App() {
   const switchToWatchedMovies = () => {
     let temp = movies.concat([])
     temp = temp.filter((element) => {
-      return element.isWatched
+      return element.iswatched
     })
     // console.log(temp)
     setDisplayMovies(temp);
@@ -116,7 +116,7 @@ function App() {
   const switchToMoviesToWatch = () => {
     let temp = movies.concat([])
     temp = temp.filter((element) => {
-      return !element.isWatched
+      return !element.iswatched
     })
     // console.log(temp)
     setDisplayMovies(temp);
@@ -171,7 +171,7 @@ const AddMovieDialog = ({movies, setMovies, displayMovies, setDisplayMovies}) =>
       },
       body: JSON.stringify({
         title: document.getElementById('movie-title').value,
-        isWatched: false
+        iswatched: false
       })
     }
     setOpen(false);
@@ -252,7 +252,7 @@ const MovieDetailsDialog = ({element, title, watchedMovieToggleHandler}) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleToggleWatched} autoFocus>
-              {`Toggle Watched: ${element.isWatched}`}
+              {`Toggle Watched: ${element.iswatched}`}
           </Button>
         </DialogActions>
       </Dialog>
